@@ -3,7 +3,6 @@ function autocomplete(inp, arr) {
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
-  console.log(inp);
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/
@@ -94,5 +93,37 @@ function autocomplete(inp, arr) {
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
   });
+}
+
+function obtenerHtmlModulo(){
+	//@Objetivo:
+	// Objetivo obtener el html para añadir temario.
+  var seleccionado = $('select[id=tipo_modulos]').val();
+  item = item +1;
+  console.log(seleccionado);
+  var parametros = {
+				"pulsado" 	: 'htmlTemario',
+        "seleccionado": seleccionado,
+        "item" : item
+		};
+		$.ajax({ data:  parametros,
+			url:   'tareas.php',
+			type:  'post',
+			beforeSend: function () {
+				console.log('Iniciamos obtener html temario');
+			},
+			success:  function (response) {
+				console.log('Respuesta ajax - HtmlTemario ');
+				var resultado =  $.parseJSON(response);
+        console.log(resultado);
+        $("#temario").prepend(resultado.html);
+				
+			}
+		});
+}
+
+function EliminarModulo(item){
+  $("#item-"+item).remove();
+
 }
 
