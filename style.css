@@ -21,8 +21,9 @@ input {
 }
 
 input[type=text] {
-  background-color: #f1f1f1;
+  background-color: #fafafa;
   width: 100%;
+  border: 1px solid green;
 }
 
 input[type=submit] {
